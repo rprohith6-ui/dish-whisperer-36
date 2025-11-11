@@ -152,7 +152,7 @@ export const RecipeGenerator = () => {
                   {recipe.ingredients.map((ingredient, index) => (
                     <li 
                       key={index}
-                      className="flex items-start gap-3 text-foreground"
+                      className="flex items-start gap-3 text-foreground font-poppins"
                     >
                       <span className="text-primary text-xl">•</span>
                       <span className="text-lg">{ingredient}</span>
