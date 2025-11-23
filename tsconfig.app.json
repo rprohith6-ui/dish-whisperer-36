@@ -6,15 +6,24 @@
     "module": "ESNext",
     "skipLibCheck": true,
 
-    /* Bundler mode */
-    "moduleResolution": "bundler",
+    /* Bundle / resolution */
+    "moduleResolution": "node",
+
     "allowImportingTsExtensions": true,
     "isolatedModules": true,
     "moduleDetection": "force",
     "noEmit": true,
+
+    /* JSX / React */
     "jsx": "react-jsx",
 
-    /* Linting */
+    /* Interop / common flags */
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "resolveJsonModule": true,
+    "skipDefaultLibCheck": true,
+
+    /* Linting / strictness */
     "strict": false,
     "noUnusedLocals": false,
     "noUnusedParameters": false,
@@ -23,8 +32,11 @@
 
     "baseUrl": ".",
     "paths": {
-      "@/*": ["./src/*"]
-    }
+      "@/": ["./src/"]
+    },
+
+    "types": ["node"]
   },
-  "include": ["src"]
+
+  "include":["src"]
 }
