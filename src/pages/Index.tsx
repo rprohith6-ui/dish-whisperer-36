@@ -1,4 +1,4 @@
-import { RecipeGenerator } from "@/components/RecipeGenerator";
+import { RecipeGenerator } from "../components/RecipeGenerator";
 
 const Index = () => {
   return <RecipeGenerator />;
