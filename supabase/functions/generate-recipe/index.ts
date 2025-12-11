@@ -65,6 +65,19 @@ serve(async (req) => {
     if (!recipeResponse.ok) {
       const errorText = await recipeResponse.text();
       console.error('Recipe AI error:', recipeResponse.status, errorText);
+      
+      if (recipeResponse.status === 402) {
+        return new Response(
+          JSON.stringify({ error: 'AI credits exhausted. Please add credits to your Lovable workspace in Settings → Workspace → Usage.' }),
+          { status: 402, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
+        );
+      }
+      if (recipeResponse.status === 429) {
+        return new Response(
+          JSON.stringify({ error: 'Rate limit exceeded. Please try again in a moment.' }),
+          { status: 429, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
+        );
+      }
       throw new Error(`Recipe generation failed: ${recipeResponse.status}`);
     }
 
