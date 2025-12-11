@@ -41,9 +41,16 @@ export const RecipeGenerator = () => {
         setBackgroundImage(data.imageUrl || "");
         toast.success("Recipe generated!");
       }
-    } catch (error) {
+    } catch (error: any) {
       console.error('Error generating recipe:', error);
-      toast.error("Failed to generate recipe. Please try again.");
+      const errorMessage = error?.message || error?.error || "Failed to generate recipe. Please try again.";
+      if (errorMessage.includes('402') || errorMessage.includes('credits')) {
+        toast.error("AI credits exhausted. Please add credits in Settings → Workspace → Usage.");
+      } else if (errorMessage.includes('429') || errorMessage.includes('rate')) {
+        toast.error("Rate limit exceeded. Please try again in a moment.");
+      } else {
+        toast.error(errorMessage);
+      }
     } finally {
       setIsLoading(false);
     }
